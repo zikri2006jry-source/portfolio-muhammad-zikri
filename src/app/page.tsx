@@ -3,6 +3,53 @@
 import Image from "next/image";
 import { useState } from "react";
 
+function MailIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z" />
+      <path d="m22 6-10 7L2 6" />
+    </svg>
+  );
+}
+
+function GithubIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+      <path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.1c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z" />
+    </svg>
+  );
+}
+
+function LinkedinIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.54V9H7.1v11.45ZM22.22 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" />
+      <path d="M17.5 6.5h.01" />
+    </svg>
+  );
+}
+
 const content = {
   id: {
     nav: ["Profil", "Perjalanan", "Keahlian", "Proyek", "Kontak"],
@@ -98,11 +145,11 @@ const journey = {
     },
     {
       icon: "📜",
-      period: "2025",
+      period: "2025 – 2028",
       title: "Certificate of Competence — KKNI Level II",
       subtitle: "Computer and Network Engineering",
-      desc: "Memperoleh sertifikasi kompetensi bidang Teknik Komputer dan Jaringan sebagai bukti penguasaan kompetensi vokasi.",
-      tags: ["Sertifikasi", "Computer Network"],
+      desc: "Memperoleh sertifikasi kompetensi bidang Teknik Komputer dan Jaringan sebagai bukti penguasaan kompetensi vokasi. Sertifikat ini memiliki masa berlaku selama 3 tahun.",
+      tags: ["Sertifikasi", "KKNI Level II", "Valid 3 Years"],
       current: false,
     },
     {
@@ -191,11 +238,11 @@ const journey = {
     },
     {
       icon: "📜",
-      period: "2025",
+      period: "2025 – 2028",
       title: "Certificate of Competence — KKNI Level II",
       subtitle: "Computer and Network Engineering",
-      desc: "Earned a competency certificate in Computer and Network Engineering as proof of vocational technical competence.",
-      tags: ["Certificate", "Computer Network"],
+      desc: "Earned a competency certificate in Computer and Network Engineering as proof of vocational technical competence. This certificate is valid for 3 years.",
+      tags: ["Certificate", "KKNI Level II", "Valid 3 Years"],
       current: false,
     },
     {
@@ -301,23 +348,23 @@ const projects = {
     {
       no: "01",
       icon: "⚙️",
-      title: "Mesin Cartesian Kendali Konvensional",
-      tech: "Mekatronika · Sistem Kendali · Mekanik",
-      desc: "Proyek mesin Cartesian dengan kendali konvensional yang berfokus pada pergerakan sumbu X dan Z, mekanisme kontrol dasar, serta penerapan konsep mekatronika pada sistem gerak mesin.",
+      title: "Mesin Cartesian 2-Axis Berbasis Kendali Manual",
+      tech: "Mekatronika · Push Button · Motor DC · Kendali Manual",
+      desc: "Proyek mesin Cartesian dua sumbu dengan sistem kendali manual. Gerakan sumbu X dan Y dikendalikan menggunakan push button, yaitu tombol merah 1 untuk gerak ke kanan, tombol hijau 1 untuk gerak turun secara vertikal, tombol merah 2 untuk gerak ke kiri, dan tombol hijau 2 untuk gerak naik kembali. Proyek ini menjadi dasar penerapan sistem gerak linear pada mesin sederhana.",
     },
     {
       no: "02",
       icon: "🔌",
-      title: "Mesin Cartesian Kendali Konvensional Lanjutan",
-      tech: "Relay · Limit Switch · Selector · Push Button · Motor",
-      desc: "Pengembangan lanjutan dari mesin Cartesian sebelumnya. Pada tahap ini, sistem ditingkatkan menjadi lebih otomatis dengan penggunaan 6 relay, 4 limit switch, 1 selector, 4 push button detent, dan 2 motor untuk mendukung kontrol gerak mesin secara lebih terstruktur.",
+      title: "Sistem Otomatis Mesin Cartesian 3-Axis",
+      tech: "Relay · Limit Switch · Selector · Push Button Detent · Motor DC",
+      desc: "Pengembangan lanjutan dari mesin Cartesian manual menjadi sistem otomatis tiga sumbu X, Y, dan Z. Sistem ini menggunakan selector, push button detent, limit switch, dan rangkaian relay untuk mengatur urutan gerakan mesin secara otomatis. Mode manual tetap dapat digunakan sebagai kontrol pendukung, sementara mode otomatis digunakan untuk menjalankan pergerakan mesin secara lebih terstruktur dan konsisten.",
     },
     {
       no: "03",
       icon: "🤖",
       title: "Mobil Obstacle Avoidance",
-      tech: "Robotika · Sensor · Servo · Buzzer",
-      desc: "Mobil robot yang dapat membaca halangan menggunakan sensor. Ketika kendaraan bergerak dan mendeteksi tantangan, sistem menggerakkan servo untuk berbelok serta mengaktifkan buzzer sebagai indikator.",
+      tech: "Robotika · Sensor Ultrasonik · Servo · Buzzer",
+      desc: "Mobil robot yang dirancang untuk mendeteksi halangan menggunakan sensor ultrasonik. Ketika kendaraan mendeteksi objek di depannya, sistem menggerakkan servo untuk mengubah arah gerak dan mengaktifkan buzzer sebagai indikator peringatan.",
     },
   ],
 
@@ -325,26 +372,49 @@ const projects = {
     {
       no: "01",
       icon: "⚙️",
-      title: "Conventional Control Cartesian Machine",
-      tech: "Mechatronics · Control System · Mechanical",
-      desc: "A Cartesian machine project with conventional control, focused on X and Z axis movement, basic control mechanisms, and mechatronics implementation in machine motion systems.",
+      title: "Manual Control 2-Axis Cartesian Machine",
+      tech: "Mechatronics · Push Button · DC Motor · Manual Control",
+      desc: "A two-axis Cartesian machine project using a manual control system. The X and Y axis movements are controlled by push buttons: red button 1 moves the system to the right, green button 1 moves it downward vertically, red button 2 moves it to the left, and green button 2 moves it upward again. This project serves as a basic implementation of linear motion control in a simple machine system.",
     },
     {
       no: "02",
       icon: "🔌",
-      title: "Advanced Conventional Control Cartesian Machine",
-      tech: "Relay · Limit Switch · Selector · Push Button · Motor",
-      desc: "An advanced development of the previous Cartesian machine. In this stage, the system is improved to become more automated by using 6 relays, 4 limit switches, 1 selector, 4 detent push buttons, and 2 motors to support more structured machine motion control.",
+      title: "Automatic 3-Axis Cartesian Machine System",
+      tech: "Relay · Limit Switch · Selector · Detent Push Button · DC Motor",
+      desc: "An advanced development of the manual Cartesian machine into an automatic three-axis X, Y, and Z system. The system uses a selector, detent push buttons, limit switches, and relay circuits to control the machine movement sequence automatically. The manual mode remains available as supporting control, while the automatic mode allows the machine to operate in a more structured and consistent motion sequence.",
     },
     {
       no: "03",
       icon: "🤖",
       title: "Obstacle Avoidance Car",
-      tech: "Robotics · Sensor · Servo · Buzzer",
-      desc: "A robot car that detects obstacles using sensors. When the vehicle moves and detects an obstacle, the system turns the servo and activates the buzzer as an indicator.",
+      tech: "Robotics · Ultrasonic Sensor · Servo · Buzzer",
+      desc: "A robot car designed to detect obstacles using an ultrasonic sensor. When the vehicle detects an object in front of it, the system moves the servo to change direction and activates the buzzer as a warning indicator.",
     },
   ],
 };
+
+const socialLinks = [
+  {
+    name: "Email",
+    href: "mailto:zikri.2006jry@gmail.com",
+    icon: <MailIcon />,
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/zikri2006jry-source",
+    icon: <GithubIcon />,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/muhammad-zikri-2b7a883a2/",
+    icon: <LinkedinIcon />,
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/mohzik.ri/",
+    icon: <InstagramIcon />,
+  },
+];
 
 export default function Home() {
   const [lang, setLang] = useState<"id" | "en">("id");
@@ -823,36 +893,22 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col justify-center gap-3">
-              <a
-                href="mailto:zikri.2006jry@gmail.com"
-                className="rounded-full bg-white px-6 py-3 text-center font-black text-slate-950"
-              >
-                Email
-              </a>
-
-              <a
-                href="https://github.com/zikri2006jry-source"
-                target="_blank"
-                className="rounded-full border border-white/20 px-6 py-3 text-center font-black transition hover:bg-white hover:text-slate-950"
-              >
-                GitHub
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/muhammad-zikri-2b7a883a2/"
-                target="_blank"
-                className="rounded-full border border-white/20 px-6 py-3 text-center font-black transition hover:bg-white hover:text-slate-950"
-              >
-                LinkedIn
-              </a>
-
-              <a
-                href="https://www.instagram.com/mohzik.ri/"
-                target="_blank"
-                className="rounded-full border border-white/20 px-6 py-3 text-center font-black transition hover:bg-white hover:text-slate-950"
-              >
-                Instagram
-              </a>
+              {socialLinks.map((link, index) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target={link.name === "Email" ? undefined : "_blank"}
+                  rel={link.name === "Email" ? undefined : "noopener noreferrer"}
+                  className={`flex items-center justify-center gap-3 rounded-full px-6 py-3 text-center font-black transition ${
+                    index === 0
+                      ? "bg-white text-slate-950"
+                      : "border border-white/20 text-white hover:bg-white hover:text-slate-950"
+                  }`}
+                >
+                  {link.icon}
+                  <span>{link.name}</span>
+                </a>
+              ))}
             </div>
           </div>
         </div>
