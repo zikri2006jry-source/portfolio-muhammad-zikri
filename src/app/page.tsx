@@ -43,8 +43,9 @@ const content = {
     footer: "Dibuat dengan Next.js, Tailwind CSS, GitHub, dan Vercel.",
     current: "Saat Ini",
   },
+
   en: {
-    nav: ["Profile", "Journey", "Skills", "Projects", "Contact"],
+    nav: ["Profile", "Journey", "Skills", "Work", "Contact"],
     available: "Electrical Engineering Student — Mechatronics Program",
     intro: "Hi, I am",
     name: "Muhammad Zikri",
@@ -52,7 +53,7 @@ const content = {
     description:
       "I am an Electrical Engineering student majoring in Mechatronics at Batam State Polytechnic, with interests in robotics, automation, and industrial technology. I am committed to developing technical skills, discipline, and problem-solving abilities to contribute to the industrial sector.",
     contact: "Contact Me",
-    projects: "View Projects",
+    projects: "View Work",
     stats: [
       ["2+", "Skill Areas"],
       ["3", "Technical Projects"],
@@ -70,8 +71,8 @@ const content = {
     skillTitle: "Technical Skills",
     skillDesc:
       "Several tools and skill areas that I am currently learning and using in technical projects and activities.",
-    projectLabel: "Projects",
-    projectTitle: "Current Projects",
+    projectLabel: "Work",
+    projectTitle: "Current Work",
     projectDesc:
       "Technical projects that I am currently working on or have developed in mechatronics, control, and robotics.",
     contactLabel: "Contact",
@@ -177,6 +178,7 @@ const journey = {
       current: true,
     },
   ],
+
   en: [
     {
       icon: "🎓",
@@ -318,6 +320,7 @@ const projects = {
       desc: "Mobil robot yang dapat membaca halangan menggunakan sensor. Ketika kendaraan bergerak dan mendeteksi tantangan, sistem menggerakkan servo untuk berbelok serta mengaktifkan buzzer sebagai indikator.",
     },
   ],
+
   en: [
     {
       no: "01",
@@ -345,53 +348,135 @@ const projects = {
 
 export default function Home() {
   const [lang, setLang] = useState<"id" | "en">("id");
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const t = content[lang];
+
+  const navLinks = [
+    { href: "#profile", label: t.nav[0] },
+    { href: "#journey", label: t.nav[1] },
+    { href: "#skills", label: t.nav[2] },
+    { href: "#projects", label: t.nav[3] },
+    { href: "#contact", label: t.nav[4] },
+  ];
 
   return (
     <main className="min-h-screen bg-[#fbfbfa] text-slate-950">
-      <header className="fixed left-0 top-0 z-50 w-full border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <header className="fixed left-0 top-0 z-50 w-full border-b border-slate-200/70 bg-white/90 backdrop-blur-xl">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-6">
           <a href="#" className="text-2xl font-black tracking-tight text-slate-950">
             MZ<span className="text-red-500">.</span>
           </a>
 
           <div className="hidden items-center gap-6 text-sm font-bold text-slate-600 md:flex">
-            <a href="#profile" className="hover:text-red-500">{t.nav[0]}</a>
-            <a href="#journey" className="hover:text-red-500">{t.nav[1]}</a>
-            <a href="#skills" className="hover:text-red-500">{t.nav[2]}</a>
-            <a href="#projects" className="hover:text-red-500">{t.nav[3]}</a>
-            <a href="#contact" className="hover:text-red-500">{t.nav[4]}</a>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="hover:text-red-500">
+                {link.label}
+              </a>
+            ))}
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setLang("id")}
-              className={`rounded-full px-3 py-1 text-sm font-black ${
-                lang === "id" ? "bg-red-500 text-white" : "text-slate-400"
-              }`}
-            >
-              ID
-            </button>
-            <button
-              onClick={() => setLang("en")}
-              className={`rounded-full px-3 py-1 text-sm font-black ${
-                lang === "en" ? "bg-red-500 text-white" : "text-slate-400"
-              }`}
-            >
-              EN
-            </button>
+            <div className="flex rounded-full bg-slate-100 p-1">
+              <button
+                type="button"
+                onClick={() => setLang("id")}
+                className={`rounded-full px-3 py-1 text-sm font-black ${
+                  lang === "id"
+                    ? "bg-white text-slate-950 shadow"
+                    : "text-slate-400"
+                }`}
+              >
+                ID
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setLang("en")}
+                className={`rounded-full px-3 py-1 text-sm font-black ${
+                  lang === "en"
+                    ? "bg-white text-slate-950 shadow"
+                    : "text-slate-400"
+                }`}
+              >
+                EN
+              </button>
+            </div>
 
             <a
               href="#contact"
-              className="hidden rounded-full bg-slate-950 px-5 py-2 text-sm font-black text-white shadow-lg md:block"
+              className="hidden rounded-xl bg-slate-950 px-5 py-3 text-sm font-black text-white shadow-lg md:block"
             >
-              {t.contact}
+              {lang === "en" ? "Let's Talk" : t.contact}
             </a>
+
+            <button
+              type="button"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-2xl font-black md:hidden"
+              aria-label="Open menu"
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? "×" : "☰"}
+            </button>
           </div>
         </nav>
+
+        {menuOpen && (
+          <div className="md:hidden">
+            <div className="min-h-screen bg-[#fbfbfa] px-6 pt-24">
+              <div className="flex flex-col items-center gap-12 text-center">
+                {navLinks.slice(1).map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-5xl font-black tracking-tight text-slate-950"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+
+                <a
+                  href="#contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-2xl bg-slate-950 px-8 py-4 text-lg font-black text-white"
+                >
+                  {lang === "en" ? "Let's Talk" : "Hubungi Saya"}
+                </a>
+
+                <div className="mt-6 flex items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setLang("id")}
+                    className={`rounded-full px-4 py-2 text-lg font-black ${
+                      lang === "id"
+                        ? "bg-white text-slate-950 shadow"
+                        : "text-slate-400"
+                    }`}
+                  >
+                    ID
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setLang("en")}
+                    className={`rounded-full px-4 py-2 text-lg font-black ${
+                      lang === "en"
+                        ? "bg-white text-slate-950 shadow"
+                        : "text-slate-400"
+                    }`}
+                  >
+                    EN
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
-      <section className="relative overflow-hidden px-6 pt-32">
+      <section className="relative overflow-hidden px-6 pt-28 md:pt-32">
         <div className="absolute inset-0 -z-10 bg-[#fbfbfa]" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:42px_42px] opacity-70" />
         <div className="absolute left-10 top-28 -z-10 h-40 w-40 rotate-[-18deg] rounded-[2rem] border border-red-200 bg-red-100/40 shadow-2xl shadow-red-100" />
@@ -400,20 +485,22 @@ export default function Home() {
         <div className="absolute bottom-16 right-20 -z-10 h-56 w-56 rounded-full border border-red-200 bg-red-100/40 shadow-2xl shadow-red-100" />
         <div className="absolute left-1/2 top-32 -z-10 h-24 w-24 rotate-45 rounded-3xl border border-slate-200 bg-white/70 shadow-xl" />
 
-        <div className="mx-auto grid min-h-[calc(100vh-8rem)] max-w-6xl items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 py-10 md:min-h-[calc(100vh-8rem)] md:grid-cols-[1.05fr_0.95fr] md:py-0">
           <div>
             <p className="mb-5 inline-flex rounded-full border border-red-100 bg-white px-4 py-2 text-sm font-black text-red-500 shadow-sm">
               {t.available}
             </p>
 
-            <h1 className="text-5xl font-black leading-tight tracking-tight text-slate-950 md:text-7xl">
+            <h1 className="text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl md:text-7xl">
               {t.intro} <br />
               <span className="text-red-500">{t.name}</span>
             </h1>
 
-            <p className="mt-5 text-2xl font-black text-slate-800">{t.role}</p>
+            <p className="mt-5 text-xl font-black text-slate-800 md:text-2xl">
+              {t.role}
+            </p>
 
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
               {t.description}
             </p>
 
@@ -434,8 +521,9 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative mx-auto w-full max-w-[340px] md:max-w-none">
             <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-red-400 to-blue-300 opacity-20 blur-2xl" />
+
             <div className="relative rounded-[2.5rem] border border-slate-200 bg-white p-4 shadow-[0_30px_100px_rgba(15,23,42,0.14)]">
               <div className="overflow-hidden rounded-[2rem] bg-blue-700">
                 <Image
@@ -444,7 +532,7 @@ export default function Home() {
                   width={900}
                   height={1200}
                   priority
-                  className="h-[520px] w-full object-cover object-top"
+                  className="h-[320px] w-full object-cover object-top sm:h-[400px] md:h-[520px]"
                 />
               </div>
 
@@ -453,10 +541,9 @@ export default function Home() {
                   <h2 className="text-2xl font-black text-slate-950">
                     Muhammad Zikri
                   </h2>
-                  <p className="font-bold text-slate-500">
-                    Mechatronics Student
-                  </p>
+                  <p className="font-bold text-slate-500">Mechatronics Student</p>
                 </div>
+
                 <div className="rounded-2xl bg-red-50 px-4 py-3 text-right">
                   <p className="text-sm font-black text-red-500">MZ</p>
                   <p className="text-xs font-bold text-slate-500">Portfolio</p>
@@ -466,7 +553,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-            <section className="px-6 py-10">
+
+      <section className="px-6 py-10">
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-4">
           {t.stats.map((stat) => (
             <div
@@ -580,9 +668,7 @@ export default function Home() {
                       {item.subtitle}
                     </p>
 
-                    <p className="mt-5 leading-8 text-slate-600">
-                      {item.desc}
-                    </p>
+                    <p className="mt-5 leading-8 text-slate-600">{item.desc}</p>
 
                     <div className="mt-5 flex flex-wrap gap-3">
                       {item.tags.map((tag) => (
@@ -655,7 +741,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-            <section id="projects" className="relative overflow-hidden px-6 py-24">
+
+      <section id="projects" className="relative overflow-hidden px-6 py-24">
         <div className="absolute inset-0 -z-10 bg-[#fbfbfa]" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#e9eef7_1px,transparent_1px),linear-gradient(to_bottom,#e9eef7_1px,transparent_1px)] bg-[size:48px_48px] opacity-60" />
 
@@ -698,9 +785,7 @@ export default function Home() {
                   {project.title}
                 </h3>
 
-                <p className="mt-4 leading-8 text-slate-600">
-                  {project.desc}
-                </p>
+                <p className="mt-4 leading-8 text-slate-600">{project.desc}</p>
               </div>
             ))}
           </div>
