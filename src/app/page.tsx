@@ -439,7 +439,7 @@ export default function Home() {
             <div className="relative rounded-[2.5rem] border border-slate-200 bg-white p-4 shadow-[0_30px_100px_rgba(15,23,42,0.14)]">
               <div className="overflow-hidden rounded-[2rem] bg-blue-700">
                 <Image
-                  src="/profile.jpg"
+                  src="/profile.JPG"
                   alt="Muhammad Zikri"
                   width={900}
                   height={1200}
