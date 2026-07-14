@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
 function MailIcon() {
   return (
@@ -79,15 +79,12 @@ const content = {
     skillDesc:
       "Beberapa tools dan bidang kemampuan yang sedang saya pelajari dan gunakan dalam proyek maupun aktivitas teknis.",
     projectLabel: "Proyek",
-    projectTitle: "Proyek Saat Ini",
-    projectDesc:
-      "Proyek teknis yang sedang atau pernah saya kerjakan di bidang mekatronika, kontrol, dan robotika.",
+    projectTitle: "Proyek Mekatronika",
     contactLabel: "Kontak",
     contactTitle: "Mari Terhubung",
     contactDesc:
       "Saya terbuka untuk kolaborasi, diskusi proyek, kesempatan magang, pekerjaan, maupun pengembangan kemampuan di bidang teknologi industri.",
     direct: "Hubungi saya melalui",
-    footer: "Dibuat dengan Next.js, Tailwind CSS, GitHub, dan Vercel.",
     current: "Saat Ini",
   },
 
@@ -119,15 +116,12 @@ const content = {
     skillDesc:
       "Several tools and skill areas that I am currently learning and using in technical projects and activities.",
     projectLabel: "Work",
-    projectTitle: "Current Work",
-    projectDesc:
-      "Technical projects that I am currently working on or have developed in mechatronics, control, and robotics.",
+    projectTitle: "Mechatronics Projects",
     contactLabel: "Contact",
     contactTitle: "Let’s Connect",
     contactDesc:
       "I am open to collaboration, project discussions, internship opportunities, work opportunities, and skill development in industrial technology.",
     direct: "Reach me through",
-    footer: "Built with Next.js, Tailwind CSS, GitHub, and Vercel.",
     current: "Current",
   },
 };
@@ -348,16 +342,18 @@ const projects = {
     {
       no: "01",
       icon: "⚙️",
-      title: "Mesin Cartesian 2-Axis Berbasis Kendali Manual",
-      tech: "Mekatronika · Push Button · Motor DC · Kendali Manual",
-      desc: "Proyek mesin Cartesian dua sumbu dengan sistem kendali manual. Gerakan sumbu X dan Y dikendalikan menggunakan push button, yaitu tombol merah 1 untuk gerak ke kanan, tombol hijau 1 untuk gerak turun secara vertikal, tombol merah 2 untuk gerak ke kiri, dan tombol hijau 2 untuk gerak naik kembali. Proyek ini menjadi dasar penerapan sistem gerak linear pada mesin sederhana.",
+      title: "Mesin Kartesian Kendali Konvensional",
+      tech: "Mekatronika · 2 Push Button · 2 Motor DC Yellow Gearbox · Kendali Manual",
+      desc: "Mesin Kartesian dengan sistem kendali konvensional yang bekerja sepenuhnya secara manual menggunakan dua push button dan dua motor DC yellow gearbox. Push button pertama mengendalikan sumbu X untuk gerak horizontal. Ketika polaritas positif dan negatif motor pertama dibalik, arah gerak berubah dari kanan menjadi kiri. Push button kedua mengendalikan sumbu Z, sedangkan pembalikan polaritas motor kedua mengubah arah gerak naik dan turun.",
+      status: "",
     },
     {
       no: "02",
       icon: "🔌",
-      title: "Sistem Otomatis Mesin Cartesian 3-Axis",
-      tech: "Relay · Limit Switch · Selector · Push Button Detent · Motor DC",
-      desc: "Pengembangan lanjutan dari mesin Cartesian manual menjadi sistem otomatis tiga sumbu X, Y, dan Z. Sistem ini menggunakan selector, push button detent, limit switch, dan rangkaian relay untuk mengatur urutan gerakan mesin secara otomatis. Mode manual tetap dapat digunakan sebagai kontrol pendukung, sementara mode otomatis digunakan untuk menjalankan pergerakan mesin secara lebih terstruktur dan konsisten.",
+      title: "Mesin Kartesian Kendali Konvensional Lanjutan",
+      tech: "Relay K0–K5 · 4 Limit Switch · 4 Push Button · Toggle Switch ON-OFF-ON · Motor DC",
+      desc: "Pengembangan lanjutan Mesin Kartesian dengan pilihan mode manual dan otomatis melalui toggle switch ON-OFF-ON: posisi atas untuk otomatis, posisi tengah untuk OFF, dan posisi bawah untuk manual. Pada mode manual, push button 1 menggerakkan sumbu X ke kanan, push button 2 ke kiri, push button 3 menggerakkan sumbu Z turun, dan push button 4 menggerakkannya naik. Pada mode otomatis, limit switch 1 memulai gerak sumbu X ke kanan dan saat menyentuh limit switch 2 arah gerak berbalik ke kiri. Limit switch 3 memulai gerak sumbu Z ke bawah dan saat menyentuh limit switch 4 arah gerak berubah naik. Sistem menggunakan rangkaian relay K0 hingga K5, sumber 12 VDC untuk motor DC, dan 24 VDC untuk relay.",
+      status: "",
     },
     {
       no: "03",
@@ -365,6 +361,7 @@ const projects = {
       title: "Mobil Obstacle Avoidance",
       tech: "Robotika · Sensor Ultrasonik · Servo · Buzzer",
       desc: "Mobil robot yang dirancang untuk mendeteksi halangan menggunakan sensor ultrasonik. Ketika kendaraan mendeteksi objek di depannya, sistem menggerakkan servo untuk mengubah arah gerak dan mengaktifkan buzzer sebagai indikator peringatan.",
+      status: "Dalam Pengembangan",
     },
   ],
 
@@ -372,16 +369,18 @@ const projects = {
     {
       no: "01",
       icon: "⚙️",
-      title: "Manual Control 2-Axis Cartesian Machine",
-      tech: "Mechatronics · Push Button · DC Motor · Manual Control",
-      desc: "A two-axis Cartesian machine project using a manual control system. The X and Y axis movements are controlled by push buttons: red button 1 moves the system to the right, green button 1 moves it downward vertically, red button 2 moves it to the left, and green button 2 moves it upward again. This project serves as a basic implementation of linear motion control in a simple machine system.",
+      title: "Conventional Control Cartesian Machine",
+      tech: "Mechatronics · 2 Push Buttons · 2 Yellow Gearbox DC Motors · Manual Control",
+      desc: "A Cartesian machine with a fully manual conventional control system using two push buttons and two yellow gearbox DC motors. The first push button controls the X-axis horizontal movement. Reversing the positive and negative polarity of the first motor changes the movement direction from right to left. The second push button controls the Z-axis, while reversing the polarity of the second motor changes its upward and downward movement.",
+      status: "",
     },
     {
       no: "02",
       icon: "🔌",
-      title: "Automatic 3-Axis Cartesian Machine System",
-      tech: "Relay · Limit Switch · Selector · Detent Push Button · DC Motor",
-      desc: "An advanced development of the manual Cartesian machine into an automatic three-axis X, Y, and Z system. The system uses a selector, detent push buttons, limit switches, and relay circuits to control the machine movement sequence automatically. The manual mode remains available as supporting control, while the automatic mode allows the machine to operate in a more structured and consistent motion sequence.",
+      title: "Advanced Conventional Control Cartesian Machine",
+      tech: "K0–K5 Relays · 4 Limit Switches · 4 Push Buttons · ON-OFF-ON Toggle Switch · DC Motor",
+      desc: "An advanced Cartesian machine with manual and automatic modes selected through an ON-OFF-ON toggle switch: the upper position activates automatic mode, the center position turns the system off, and the lower position activates manual mode. In manual mode, push button 1 moves the X-axis to the right, push button 2 moves it to the left, push button 3 moves the Z-axis downward, and push button 4 moves it upward. In automatic mode, limit switch 1 starts the X-axis movement to the right, and contact with limit switch 2 reverses it to the left. Limit switch 3 starts the Z-axis downward movement, and contact with limit switch 4 reverses it upward. The system uses K0 through K5 relay circuits, a 12 VDC supply for the DC motors, and a 24 VDC supply for the relays.",
+      status: "",
     },
     {
       no: "03",
@@ -389,6 +388,7 @@ const projects = {
       title: "Obstacle Avoidance Car",
       tech: "Robotics · Ultrasonic Sensor · Servo · Buzzer",
       desc: "A robot car designed to detect obstacles using an ultrasonic sensor. When the vehicle detects an object in front of it, the system moves the servo to change direction and activates the buzzer as a warning indicator.",
+      status: "In Development",
     },
   ],
 };
@@ -416,9 +416,86 @@ const socialLinks = [
   },
 ];
 
+const particleData = Array.from({ length: 42 }, (_, index) => ({
+  left: `${(index * 37 + 7) % 100}%`,
+  size: 2 + ((index * 7) % 5),
+  duration: 9 + ((index * 11) % 12),
+  delay: -((index * 13) % 20),
+  drift: -42 + ((index * 17) % 84),
+  depth: -120 + ((index * 29) % 240),
+  opacity: 0.18 + ((index * 5) % 5) * 0.07,
+  blur: (index * 3) % 3,
+}));
+
+function AnimatedParticleBackground() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-[5] overflow-hidden"
+      style={{ perspective: "900px" }}
+    >
+      {particleData.map((particle, index) => (
+        <span
+          key={index}
+          className={`portfolio-particle absolute -top-8 rounded-full ${
+            index % 3 === 0
+              ? "bg-red-300/50"
+              : index % 3 === 1
+                ? "bg-blue-300/50"
+                : "bg-slate-300/60"
+          }`}
+          style={
+            {
+              left: particle.left,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animationDuration: `${particle.duration}s`,
+              animationDelay: `${particle.delay}s`,
+              filter: `blur(${particle.blur}px)`,
+              "--particle-drift": `${particle.drift}px`,
+              "--particle-depth": `${particle.depth}px`,
+              "--particle-end-depth": `${-particle.depth}px`,
+              "--particle-opacity": particle.opacity,
+            } as CSSProperties
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const [lang, setLang] = useState<"id" | "en">("id");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal]"),
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -50px 0px",
+      },
+    );
+
+    elements.forEach((element, index) => {
+      element.classList.add("reveal-hidden");
+      element.style.transitionDelay = `${(index % 4) * 90}ms`;
+      observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [lang]);
 
   const t = content[lang];
 
@@ -431,7 +508,72 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#fbfbfa] text-slate-950">
+    <main className="relative min-h-screen overflow-hidden bg-[#fbfbfa] text-slate-950">
+      <style jsx global>{`
+        @keyframes portfolio-particle-fall {
+          0% {
+            opacity: 0;
+            transform: translate3d(0, -12vh, var(--particle-depth)) scale(0.72);
+          }
+          12% {
+            opacity: var(--particle-opacity);
+          }
+          88% {
+            opacity: var(--particle-opacity);
+          }
+          100% {
+            opacity: 0;
+            transform: translate3d(
+                var(--particle-drift),
+                112vh,
+                var(--particle-end-depth)
+              )
+              scale(1.18);
+          }
+        }
+
+        .portfolio-particle {
+          animation-name: portfolio-particle-fall;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          box-shadow: 0 0 14px rgba(59, 130, 246, 0.16);
+          transform-style: preserve-3d;
+          will-change: transform, opacity;
+        }
+
+        .reveal-hidden {
+          opacity: 0;
+          filter: brightness(0.42) blur(8px);
+          transform: translate3d(0, 38px, 0) scale(0.985);
+          transition:
+            opacity 850ms ease,
+            filter 850ms ease,
+            transform 850ms cubic-bezier(0.22, 1, 0.36, 1);
+          will-change: opacity, filter, transform;
+        }
+
+        .reveal-hidden.reveal-show {
+          opacity: 1;
+          filter: brightness(1) blur(0);
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .portfolio-particle {
+            display: none;
+          }
+
+          .reveal-hidden,
+          .reveal-hidden.reveal-show {
+            opacity: 1;
+            filter: none;
+            transform: none;
+            transition: none;
+          }
+        }
+      `}</style>
+
+      <AnimatedParticleBackground />
       <header className="fixed left-0 top-0 z-50 w-full border-b border-slate-200/70 bg-white/90 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-6">
           <a href="#" className="text-2xl font-black tracking-tight text-slate-950">
@@ -555,7 +697,7 @@ export default function Home() {
         <div className="absolute bottom-16 right-20 -z-10 h-56 w-56 rounded-full border border-red-200 bg-red-100/40 shadow-2xl shadow-red-100" />
         <div className="absolute left-1/2 top-32 -z-10 h-24 w-24 rotate-45 rounded-3xl border border-slate-200 bg-white/70 shadow-xl" />
 
-        <div className="mx-auto grid max-w-6xl items-center gap-10 py-10 md:min-h-[calc(100vh-8rem)] md:grid-cols-[1.05fr_0.95fr] md:py-0">
+        <div data-reveal className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 py-10 md:min-h-[calc(100vh-8rem)] md:grid-cols-[1.05fr_0.95fr] md:py-0">
           <div>
             <p className="mb-5 inline-flex rounded-full border border-red-100 bg-white px-4 py-2 text-sm font-black text-red-500 shadow-sm">
               {t.available}
@@ -625,9 +767,10 @@ export default function Home() {
       </section>
 
       <section className="px-6 py-10">
-        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-4">
+        <div className="relative z-10 mx-auto grid max-w-6xl gap-4 md:grid-cols-4">
           {t.stats.map((stat) => (
             <div
+              data-reveal
               key={stat[1]}
               className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
             >
@@ -642,7 +785,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-white" />
         <div className="absolute right-10 top-10 -z-10 h-44 w-44 rotate-12 rounded-[2rem] border border-blue-100 bg-blue-50/60 shadow-2xl shadow-blue-100" />
 
-        <div className="mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_18px_60px_rgba(15,23,42,0.08)] md:p-12">
+        <div data-reveal className="relative z-10 mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_18px_60px_rgba(15,23,42,0.08)] md:p-12">
           <p className="font-black text-red-500">{t.profileTitle}</p>
 
           <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
@@ -664,8 +807,8 @@ export default function Home() {
         <div className="absolute bottom-32 left-10 -z-10 h-40 w-40 rotate-[-12deg] rounded-[2rem] border border-blue-100 bg-blue-50/60 shadow-2xl shadow-blue-100" />
         <div className="absolute bottom-20 right-16 -z-10 h-48 w-48 rounded-full border border-red-100 bg-red-50/50 shadow-2xl shadow-red-100" />
 
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center">
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div data-reveal className="text-center">
             <p className="font-black text-red-500">{t.journeyLabel}</p>
 
             <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
@@ -683,6 +826,7 @@ export default function Home() {
             <div className="space-y-10">
               {journey[lang].map((item, index) => (
                 <div
+                  data-reveal
                   key={`${item.period}-${item.title}`}
                   className="relative grid gap-6 md:grid-cols-[185px_1fr]"
                 >
@@ -769,8 +913,8 @@ export default function Home() {
         <div className="absolute right-16 top-20 -z-10 h-52 w-52 rotate-12 rounded-[2rem] border border-red-100 bg-red-50/60 shadow-2xl shadow-red-100" />
         <div className="absolute left-10 bottom-20 -z-10 h-44 w-44 rotate-[-18deg] rounded-[2rem] border border-blue-100 bg-blue-50/60 shadow-2xl shadow-blue-100" />
 
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center">
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div data-reveal className="text-center">
             <p className="font-black text-red-500">{t.skillLabel}</p>
 
             <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
@@ -785,6 +929,7 @@ export default function Home() {
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {skills.map((group) => (
               <div
+                data-reveal
                 key={group.title}
                 className="rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_18px_60px_rgba(15,23,42,0.08)] transition hover:-translate-y-1"
               >
@@ -820,22 +965,20 @@ export default function Home() {
         <div className="absolute right-10 bottom-20 -z-10 h-44 w-44 rounded-full border border-red-100 bg-red-50/60 shadow-2xl shadow-red-100" />
         <div className="absolute right-24 top-24 -z-10 h-28 w-28 rotate-45 rounded-3xl border border-slate-200 bg-white/70 shadow-xl" />
 
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center">
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div data-reveal className="text-center">
             <p className="font-black text-red-500">{t.projectLabel}</p>
 
             <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
               {t.projectTitle}
             </h2>
 
-            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              {t.projectDesc}
-            </p>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {projects[lang].map((project) => (
               <div
+                data-reveal
                 key={project.title}
                 className="rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_18px_60px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:shadow-[0_24px_80px_rgba(15,23,42,0.12)]"
               >
@@ -844,9 +987,18 @@ export default function Home() {
                     {project.icon}
                   </div>
 
-                  <p className="text-5xl font-black text-slate-100">
-                    {project.no}
-                  </p>
+                  <div className="text-right">
+                    {project.status && (
+                      <span className="mb-2 inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-2 text-xs font-black uppercase tracking-wide text-amber-700">
+                        <span className="h-2 w-2 animate-pulse rounded-full bg-amber-500" />
+                        {project.status}
+                      </span>
+                    )}
+
+                    <p className="text-5xl font-black text-slate-100">
+                      {project.no}
+                    </p>
+                  </div>
                 </div>
 
                 <p className="mt-6 font-black text-red-500">{project.tech}</p>
@@ -867,7 +1019,7 @@ export default function Home() {
         <div className="absolute left-10 top-20 -z-10 h-44 w-44 rotate-[-15deg] rounded-[2rem] border border-red-100 bg-red-50/60 shadow-2xl shadow-red-100" />
         <div className="absolute right-10 bottom-20 -z-10 h-44 w-44 rotate-12 rounded-[2rem] border border-blue-100 bg-blue-50/60 shadow-2xl shadow-blue-100" />
 
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-[0_30px_100px_rgba(15,23,42,0.25)]">
+        <div data-reveal className="relative z-10 mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-[0_30px_100px_rgba(15,23,42,0.25)]">
           <div className="grid gap-8 p-8 md:grid-cols-[1.2fr_0.8fr] md:p-12">
             <div>
               <p className="font-black text-red-400">{t.contactLabel}</p>
@@ -914,15 +1066,11 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-slate-200 bg-white px-6 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm font-bold text-slate-500 md:flex-row">
+      <footer className="relative z-10 border-t border-slate-200 bg-white px-6 py-6">
+        <div className="mx-auto flex max-w-6xl items-center justify-center">
           <p className="text-xl font-black text-slate-950">
             MZ<span className="text-red-500">.</span>
           </p>
-
-          <p>{t.footer}</p>
-
-          <p>© 2026 Muhammad Zikri</p>
         </div>
       </footer>
     </main>
