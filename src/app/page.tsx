@@ -77,7 +77,7 @@ const content = {
     skillLabel: "Keahlian",
     skillTitle: "Keahlian Teknis",
     skillDesc:
-      "Beberapa tools dan bidang kemampuan yang sedang saya pelajari dan gunakan dalam proyek maupun aktivitas teknis.",
+      "Tools, software, dan kemampuan teknis yang saya pelajari serta gunakan dalam proyek, praktik, dan aktivitas mekatronika.",
     projectLabel: "Proyek",
     projectTitle: "Proyek Mekatronika",
     contactLabel: "Kontak",
@@ -114,7 +114,7 @@ const content = {
     skillLabel: "Skills",
     skillTitle: "Technical Skills",
     skillDesc:
-      "Several tools and skill areas that I am currently learning and using in technical projects and activities.",
+      "Tools, software, and technical skills that I learn and use in projects, practical work, and mechatronics activities.",
     projectLabel: "Work",
     projectTitle: "Mechatronics Projects",
     contactLabel: "Contact",
@@ -318,12 +318,22 @@ const skills = [
   {
     icon: "🧩",
     title: "Design & Engineering",
-    items: ["SolidWorks", "Mechanical Design", "Adobe Illustrator", "Poster Design"],
+    items: [
+      "SolidWorks",
+      "Mechanical Design",
+      "Adobe Illustrator",
+      "Poster Design",
+    ],
   },
   {
     icon: "💻",
     title: "Programming & Application",
-    items: ["Visual Studio WinForms", "Code::Blocks", "C/C++ Basic", "Problem Solving"],
+    items: [
+      "Visual Studio WinForms",
+      "Code::Blocks",
+      "C/C++ Basic",
+      "Problem Solving",
+    ],
   },
   {
     icon: "🌐",
@@ -464,6 +474,78 @@ function AnimatedParticleBackground() {
   );
 }
 
+function DarkMotionBackground() {
+  const shapes = [
+    {
+      className:
+        "left-[6%] top-[12%] h-28 w-28 rotate-12 rounded-[1.75rem] border-red-500/15 bg-red-500/[0.06]",
+      animation: "dark-float-one 12s ease-in-out infinite",
+    },
+    {
+      className:
+        "right-[8%] top-[14%] h-40 w-40 rounded-full border-blue-400/15 bg-blue-400/[0.05]",
+      animation: "dark-float-two 15s ease-in-out infinite",
+    },
+    {
+      className:
+        "bottom-[12%] left-[18%] h-24 w-24 rotate-45 rounded-[1.5rem] border-white/10 bg-white/[0.03]",
+      animation: "dark-spin-float 18s linear infinite",
+    },
+    {
+      className:
+        "bottom-[8%] right-[16%] h-36 w-36 rotate-[18deg] rounded-[2rem] border-red-400/10 bg-red-400/[0.04]",
+      animation: "dark-float-one 17s ease-in-out infinite reverse",
+    },
+    {
+      className:
+        "left-1/2 top-[34%] h-20 w-20 -translate-x-1/2 rotate-45 rounded-2xl border-slate-300/10 bg-slate-300/[0.03]",
+      animation: "dark-float-two 13s ease-in-out infinite reverse",
+    },
+  ];
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+      style={{ perspective: "1000px" }}
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(239,68,68,0.12),transparent_28%),radial-gradient(circle_at_82%_24%,rgba(59,130,246,0.10),transparent_26%),radial-gradient(circle_at_50%_90%,rgba(255,255,255,0.05),transparent_24%)]" />
+      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.055)_1px,transparent_1px)] [background-size:46px_46px]" />
+
+      {shapes.map((shape, index) => (
+        <span
+          key={index}
+          className={`absolute border shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-[2px] ${shape.className}`}
+          style={{
+            animation: shape.animation,
+            animationDelay: `${index * -1.7}s`,
+            transformStyle: "preserve-3d",
+          }}
+        />
+      ))}
+
+      {Array.from({ length: 18 }, (_, index) => (
+        <span
+          key={`dark-particle-${index}`}
+          className="dark-section-particle absolute rounded-full bg-white/30"
+          style={
+            {
+              left: `${(index * 29 + 5) % 96}%`,
+              top: `${(index * 41 + 7) % 92}%`,
+              width: `${2 + (index % 3)}px`,
+              height: `${2 + (index % 3)}px`,
+              animationDuration: `${7 + (index % 6)}s`,
+              animationDelay: `${index * -0.65}s`,
+              "--dark-particle-x": `${-24 + ((index * 11) % 48)}px`,
+              "--dark-particle-y": `${-18 - ((index * 7) % 36)}px`,
+            } as CSSProperties
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const [lang, setLang] = useState<"id" | "en">("id");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -558,8 +640,66 @@ export default function Home() {
           transform: translate3d(0, 0, 0) scale(1);
         }
 
+        @keyframes dark-float-one {
+          0%,
+          100% {
+            transform: translate3d(0, 0, 0) rotate(8deg);
+          }
+          50% {
+            transform: translate3d(20px, -24px, 70px) rotate(18deg);
+          }
+        }
+
+        @keyframes dark-float-two {
+          0%,
+          100% {
+            transform: translate3d(0, 0, -30px) rotate(-8deg);
+          }
+          50% {
+            transform: translate3d(-24px, 20px, 90px) rotate(10deg);
+          }
+        }
+
+        @keyframes dark-spin-float {
+          0% {
+            transform: translate3d(0, 0, 0) rotate(0deg);
+          }
+          50% {
+            transform: translate3d(14px, -22px, 65px) rotate(180deg);
+          }
+          100% {
+            transform: translate3d(0, 0, 0) rotate(360deg);
+          }
+        }
+
+        @keyframes dark-particle-drift {
+          0%,
+          100% {
+            opacity: 0.15;
+            transform: translate3d(0, 0, 0) scale(0.8);
+          }
+          50% {
+            opacity: 0.75;
+            transform: translate3d(
+                var(--dark-particle-x),
+                var(--dark-particle-y),
+                80px
+              )
+              scale(1.25);
+          }
+        }
+
+        .dark-section-particle {
+          animation-name: dark-particle-drift;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+          box-shadow: 0 0 12px rgba(255, 255, 255, 0.28);
+          will-change: transform, opacity;
+        }
+
         @media (prefers-reduced-motion: reduce) {
-          .portfolio-particle {
+          .portfolio-particle,
+          .dark-section-particle {
             display: none;
           }
 
@@ -576,13 +716,20 @@ export default function Home() {
       <AnimatedParticleBackground />
       <header className="fixed left-0 top-0 z-50 w-full border-b border-slate-200/70 bg-white/90 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-6">
-          <a href="#" className="text-2xl font-black tracking-tight text-slate-950">
+          <a
+            href="#"
+            className="text-2xl font-black tracking-tight text-slate-950"
+          >
             MZ<span className="text-red-500">.</span>
           </a>
 
           <div className="hidden items-center gap-6 text-sm font-bold text-slate-600 md:flex">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="hover:text-red-500">
+              <a
+                key={link.href}
+                href={link.href}
+                className="hover:text-red-500"
+              >
                 {link.label}
               </a>
             ))}
@@ -697,7 +844,10 @@ export default function Home() {
         <div className="absolute bottom-16 right-20 -z-10 h-56 w-56 rounded-full border border-red-200 bg-red-100/40 shadow-2xl shadow-red-100" />
         <div className="absolute left-1/2 top-32 -z-10 h-24 w-24 rotate-45 rounded-3xl border border-slate-200 bg-white/70 shadow-xl" />
 
-        <div data-reveal className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 py-10 md:min-h-[calc(100vh-8rem)] md:grid-cols-[1.05fr_0.95fr] md:py-0">
+        <div
+          data-reveal
+          className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 py-10 md:min-h-[calc(100vh-8rem)] md:grid-cols-[1.05fr_0.95fr] md:py-0"
+        >
           <div>
             <p className="mb-5 inline-flex rounded-full border border-red-100 bg-white px-4 py-2 text-sm font-black text-red-500 shadow-sm">
               {t.available}
@@ -753,7 +903,9 @@ export default function Home() {
                   <h2 className="text-2xl font-black text-slate-950">
                     Muhammad Zikri
                   </h2>
-                  <p className="font-bold text-slate-500">Mechatronics Student</p>
+                  <p className="font-bold text-slate-500">
+                    Mechatronics Student
+                  </p>
                 </div>
 
                 <div className="rounded-2xl bg-red-50 px-4 py-3 text-right">
@@ -785,7 +937,10 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-white" />
         <div className="absolute right-10 top-10 -z-10 h-44 w-44 rotate-12 rounded-[2rem] border border-blue-100 bg-blue-50/60 shadow-2xl shadow-blue-100" />
 
-        <div data-reveal className="relative z-10 mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_18px_60px_rgba(15,23,42,0.08)] md:p-12">
+        <div
+          data-reveal
+          className="relative z-10 mx-auto max-w-6xl rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_18px_60px_rgba(15,23,42,0.08)] md:p-12"
+        >
           <p className="font-black text-red-500">{t.profileTitle}</p>
 
           <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
@@ -908,49 +1063,58 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="skills" className="relative overflow-hidden px-6 py-24">
-        <div className="absolute inset-0 -z-10 bg-white" />
-        <div className="absolute right-16 top-20 -z-10 h-52 w-52 rotate-12 rounded-[2rem] border border-red-100 bg-red-50/60 shadow-2xl shadow-red-100" />
-        <div className="absolute left-10 bottom-20 -z-10 h-44 w-44 rotate-[-18deg] rounded-[2rem] border border-blue-100 bg-blue-50/60 shadow-2xl shadow-blue-100" />
+      <section
+        id="skills"
+        className="relative overflow-hidden bg-[#090909] px-6 py-24 text-white"
+      >
+        <DarkMotionBackground />
 
         <div className="relative z-10 mx-auto max-w-6xl">
-          <div data-reveal className="text-center">
-            <p className="font-black text-red-500">{t.skillLabel}</p>
+          <div data-reveal className="max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-red-400">
+              {lang === "id" ? "Keahlian Teknis" : "Technical Skills"}
+            </p>
 
-            <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
+            <h2 className="mt-4 text-4xl font-black tracking-tight text-white md:text-6xl">
               {t.skillTitle}
             </h2>
 
-            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-400">
               {t.skillDesc}
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {skills.map((group) => (
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {skills.map((group, groupIndex) => (
               <div
                 data-reveal
                 key={group.title}
-                className="rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_18px_60px_rgba(15,23,42,0.08)] transition hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-red-400/30 hover:bg-white/[0.07]"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-2xl">
+                <div className="absolute right-5 top-3 text-6xl font-black text-white/[0.035]">
+                  {String(groupIndex + 1).padStart(2, "0")}
+                </div>
+
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-red-400/15 bg-red-500/10 text-2xl shadow-[0_12px_35px_rgba(239,68,68,0.08)]">
                   {group.icon}
                 </div>
 
-                <h3 className="mt-5 text-2xl font-black text-slate-950">
+                <h3 className="relative mt-5 text-2xl font-black text-white">
                   {group.title}
                 </h3>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="relative mt-6 flex flex-wrap gap-3">
                   {group.items.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full bg-slate-100 px-4 py-2 text-sm font-black text-slate-600"
+                      className="rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm font-black text-slate-300 transition group-hover:border-white/15 group-hover:text-white"
                     >
                       {item}
                     </span>
                   ))}
                 </div>
+
+                <div className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-red-500 via-red-400 to-transparent transition-all duration-500 group-hover:w-full" />
               </div>
             ))}
           </div>
@@ -972,7 +1136,6 @@ export default function Home() {
             <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
               {t.projectTitle}
             </h2>
-
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -1019,7 +1182,10 @@ export default function Home() {
         <div className="absolute left-10 top-20 -z-10 h-44 w-44 rotate-[-15deg] rounded-[2rem] border border-red-100 bg-red-50/60 shadow-2xl shadow-red-100" />
         <div className="absolute right-10 bottom-20 -z-10 h-44 w-44 rotate-12 rounded-[2rem] border border-blue-100 bg-blue-50/60 shadow-2xl shadow-blue-100" />
 
-        <div data-reveal className="relative z-10 mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-[0_30px_100px_rgba(15,23,42,0.25)]">
+        <div
+          data-reveal
+          className="relative z-10 mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-[0_30px_100px_rgba(15,23,42,0.25)]"
+        >
           <div className="grid gap-8 p-8 md:grid-cols-[1.2fr_0.8fr] md:p-12">
             <div>
               <p className="font-black text-red-400">{t.contactLabel}</p>
@@ -1050,7 +1216,9 @@ export default function Home() {
                   key={link.name}
                   href={link.href}
                   target={link.name === "Email" ? undefined : "_blank"}
-                  rel={link.name === "Email" ? undefined : "noopener noreferrer"}
+                  rel={
+                    link.name === "Email" ? undefined : "noopener noreferrer"
+                  }
                   className={`flex items-center justify-center gap-3 rounded-full px-6 py-3 text-center font-black transition ${
                     index === 0
                       ? "bg-white text-slate-950"
@@ -1066,11 +1234,29 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="relative z-10 border-t border-slate-200 bg-white px-6 py-6">
-        <div className="mx-auto flex max-w-6xl items-center justify-center">
-          <p className="text-xl font-black text-slate-950">
+      <footer className="relative overflow-hidden border-t border-white/10 bg-[#090909] px-6 py-10 text-white">
+        <DarkMotionBackground />
+
+        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-7 text-center md:grid-cols-[1fr_auto_1fr] md:text-left">
+          <a href="#" className="text-2xl font-black tracking-tight text-white">
             MZ<span className="text-red-500">.</span>
-          </p>
+          </a>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm font-bold text-slate-400">
+            {navLinks.slice(1).map((link) => (
+              <a
+                key={`footer-${link.href}`}
+                href={link.href}
+                className="transition hover:text-red-400"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="hidden justify-self-end md:block" aria-hidden="true">
+            <span className="inline-flex h-3 w-3 rounded-full bg-red-500 shadow-[0_0_24px_rgba(239,68,68,0.75)]" />
+          </div>
         </div>
       </footer>
     </main>
